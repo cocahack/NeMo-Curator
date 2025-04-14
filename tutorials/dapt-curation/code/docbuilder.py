@@ -71,7 +71,6 @@ class WikitxtDownloader(DocumentDownloader):
         print(f"Downloading txt URLs data from '{url}'...")
         response = requests.get(url)
         html = BeautifulSoup(response.content, "lxml")
-        title = html.select("#firstHeading")[0].text
         paragraphs = html.find_all(["p", "ul", "li"])
         intro = "\n".join([para.text for para in paragraphs])
         with gzip.open(output_file, "wt") as file:
